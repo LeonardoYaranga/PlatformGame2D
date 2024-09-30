@@ -5,8 +5,12 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public float velocity;
+    public float jumpForce;
+
     private Rigidbody2D rigidbody2D;
     private bool isLookingRight = true;
+   
+
 
     private Animator animator;
 
@@ -14,7 +18,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-
+        
         animator = GetComponent<Animator>();
     }
 
@@ -22,6 +26,16 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         ProcessMovement();
+        ProcessJump();
+    }
+
+
+    void ProcessJump()
+    {
+        if( Input.GetKeyDown(KeyCode.Space))
+        {
+            rigidbody2D.AddForce(Vector2.up*jumpForce,ForceMode2D.Impulse);
+        }
     }
 
     void ProcessMovement()
