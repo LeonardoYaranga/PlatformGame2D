@@ -24,7 +24,7 @@ public class Coin : MonoBehaviour
        
         if(collision.CompareTag("Player"))
         {
-            Debug.Log("collision");
+           // Debug.Log("collision");
            gameManager.AddPoints(value);
             Destroy(this.gameObject);
         }
