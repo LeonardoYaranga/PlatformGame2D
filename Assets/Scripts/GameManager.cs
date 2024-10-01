@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
     public HUD hud;
+    public int numMaxHealths;
 
-    private int numHealths=3;
+    private int numHealths;
     
     public int TotalPoints { get { return totalPoints; } }
     private int totalPoints;
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        numHealths = numMaxHealths;
     }
 
     // Update is called once per frame
@@ -45,7 +47,28 @@ public class GameManager : MonoBehaviour
 
     public void LoseHealth()
     {
+       
         numHealths--;
         hud.DisableHealth(numHealths);
+
+        if (numHealths == 0)
+        {           
+            SceneManager.LoadScene(1);
+        }
+
+    }
+
+    public bool RecoveryHealth()
+    {
+        if (numHealths == numMaxHealths)
+        {
+            hud.ActivateHealth(numHealths);
+            numHealths++;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
