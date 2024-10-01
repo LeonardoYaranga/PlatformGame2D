@@ -166,4 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
-  gameManager: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: 668565d7c8c33814b9cb8c3be4e6355e, type: 3}

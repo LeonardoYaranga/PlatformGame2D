@@ -5,15 +5,13 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int value = 1;
-    public GameManager gameManager;
+    public AudioClip coinSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -25,8 +23,9 @@ public class Coin : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
            // Debug.Log("collision");
-           gameManager.AddPoints(value);
+           GameManager.Instance.AddPoints(value);
             Destroy(this.gameObject);
+           AudioManager.Instance.ReproduceSound(coinSound);
         }
     }
 }

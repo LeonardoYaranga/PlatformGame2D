@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     public float jumpForce;
     public int maxJumps;
     public LayerMask floorLayer;
+    public AudioClip jumpSound;
 
     private Rigidbody2D rigidbody2D;
     private bool isLookingRight = true;
@@ -15,6 +16,9 @@ public class CharacterController : MonoBehaviour
     private int jumpsRemaining;
 
     private Animator animator;
+    
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,7 @@ public class CharacterController : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+      
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class CharacterController : MonoBehaviour
             jumpsRemaining--;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);
             rigidbody2D.AddForce(Vector2.up*jumpForce,ForceMode2D.Impulse);
+            AudioManager.Instance.ReproduceSound(jumpSound);
         }
     }
 
