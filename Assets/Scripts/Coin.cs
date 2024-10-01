@@ -24,7 +24,7 @@ public class Coin : MonoBehaviour
         {
            // Debug.Log("collision");
            GameManager.Instance.AddPoints(value);
-            Destroy(this.gameObject);
+           Destroy(this.gameObject);
            AudioManager.Instance.ReproduceSound(coinSound);
         }
     }

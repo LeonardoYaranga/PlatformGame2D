@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public bool RecoveryHealth()
     {
-        if (numHealths == numMaxHealths)
+        if (numHealths != numMaxHealths)
         {
             hud.ActivateHealth(numHealths);
             numHealths++;

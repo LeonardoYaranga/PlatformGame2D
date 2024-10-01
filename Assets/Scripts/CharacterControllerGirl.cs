@@ -9,6 +9,9 @@ public class CharacterController : MonoBehaviour
     public int maxJumps;
     public LayerMask floorLayer;
     public AudioClip jumpSound;
+    public int forceDamageReceived;
+
+
 
     private Rigidbody2D rigidbody2D;
     private bool isLookingRight = true;
@@ -16,6 +19,8 @@ public class CharacterController : MonoBehaviour
     private int jumpsRemaining;
 
     private Animator animator;
+
+    private bool canMove = true;
     
     
 
@@ -25,6 +30,7 @@ public class CharacterController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        jumpsRemaining = maxJumps;
         animator = GetComponent<Animator>();
       
     }
@@ -36,7 +42,7 @@ public class CharacterController : MonoBehaviour
         ProcessJump();
     }
 
-    bool isOnFloor()
+    bool IsOnFloor()
     {
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, new Vector2(boxCollider2D.bounds.size.x,boxCollider2D.bounds.size.y),0f,Vector2.down,0.2f, floorLayer);
         return raycastHit2D.collider != null; 
@@ -44,7 +50,7 @@ public class CharacterController : MonoBehaviour
 
     void ProcessJump()
     {
-        if (isOnFloor())
+        if (IsOnFloor())
         {
             jumpsRemaining = maxJumps;
         }
@@ -60,6 +66,8 @@ public class CharacterController : MonoBehaviour
 
     void ProcessMovement()
     {
+        if(!canMove) return;
+
         float inputMovement = Input.GetAxis("Horizontal");
 
         if (inputMovement != 0)
@@ -85,5 +93,41 @@ public class CharacterController : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
+    }
+
+    public void ApplyDamageReceivedFromEnemy()
+    {
+        canMove= false;
+
+        Vector2 damageDirection= new Vector2(0,0) ;
+        if (rigidbody2D.velocity.x > 0)
+        {
+            damageDirection = new Vector2(-1, 1);
+        }
+
+        if(rigidbody2D.velocity.x < 0)
+        {
+            damageDirection = new Vector2(1, 1);
+        }
+
+        rigidbody2D.AddForce(damageDirection * forceDamageReceived);
+
+       StartCoroutine(WaitAndActiveMovement());
+
+
+    }
+
+    IEnumerator WaitAndActiveMovement()
+    {
+        //We wait before comprove if it is on floor
+        yield return new WaitForSeconds(0.1f);
+
+        while(!IsOnFloor())
+        {
+            //We wait next frame
+            yield return null;
+        }
+        //If it is on floor, we active the movement
+        canMove= true;
     }
 }

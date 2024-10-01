@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
         {
                         
            isHealthRecovered = GameManager.Instance.RecoveryHealth();
+          
             if (isHealthRecovered)
             {
                 Destroy(this.gameObject);
