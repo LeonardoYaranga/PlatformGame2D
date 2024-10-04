@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public float heal;
     private bool isHealthRecovered;
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if( collision.CompareTag("Player"))
         {
                         
-           isHealthRecovered = GameManager.Instance.RecoveryHealth();
+           isHealthRecovered = GameManager.Instance.RecoveryHealth(heal);
           
             if (isHealthRecovered)
             {

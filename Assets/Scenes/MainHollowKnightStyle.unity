@@ -261,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216045785}
   - component: {fileID: 216045786}
+  - component: {fileID: 216045787}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -340,6 +341,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &216045787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216045784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0dc2fefe1325f04ea4e94679eb23f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &375925664
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +479,7 @@ GameObject:
   - component: {fileID: 429471122}
   - component: {fileID: 429471121}
   - component: {fileID: 429471120}
+  - component: {fileID: 429471126}
   - component: {fileID: 429471125}
   m_Layer: 0
   m_Name: Boy
@@ -654,6 +668,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &429471126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429471119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9efba5529ac8a4a9f4e100265f1bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
+  healthBar: {fileID: 216045787}
 --- !u!1 &454677957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 1177850961}
+  playerHealth: {fileID: 429471126}
   numMaxHealths: 3
 --- !u!1 &1379938221
 GameObject:
@@ -1997,6 +2027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 4
+  damage: 25
 --- !u!95 &1444219126
 Animator:
   serializedVersion: 5
@@ -2212,6 +2243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6715cb7e899c634aad8deeecac5f3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heal: 25
 --- !u!61 &1697392537
 BoxCollider2D:
   m_ObjectHideFlags: 0

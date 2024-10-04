@@ -12,19 +12,21 @@ public class HealthBar : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void ChangueMaxHealth(float maxHP)
+    public void ChangeMaxHealth(float maxHP)
     { 
     slider.maxValue = maxHP;
+        Debug.Log(slider.maxValue);
     }
 
-    private void ChangeCurrentHealth(float currentValue)
+    public void ChangeCurrentHealth(float currentValue)
     { 
-    slider.value = currentValue; 
+    slider.value = currentValue;
+        Debug.Log(slider.value);
     }
 
     public void InicializeHealthBar()
     {
-        ChangueMaxHealth(slider.maxValue);
+        ChangeMaxHealth(slider.maxValue);
         ChangeCurrentHealth(slider.value);
     }
 

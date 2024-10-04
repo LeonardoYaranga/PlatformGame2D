@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int attackCooldown;
+    public float damage;
+
     private bool canAttack= true;
     private SpriteRenderer spriteRenderer;
 
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
             color.a = 0.5f;
             spriteRenderer.color = color;
 
-            GameManager.Instance.LoseHealth();
+            GameManager.Instance.LoseHealth(damage);
 
             other.gameObject.GetComponent<CharacterController>().ApplyDamageReceivedFromEnemy();
 

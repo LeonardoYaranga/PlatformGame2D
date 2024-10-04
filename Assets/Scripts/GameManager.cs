@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
     public HUD hud;
+    public PlayerHealth playerHealth;
     public int numMaxHealths;
 
     private int numHealths;
@@ -45,30 +46,36 @@ public class GameManager : MonoBehaviour
        // Debug.Log(totalPoints);
     }
 
-    public void LoseHealth()
+    public void LoseHealth(float damage)
     {
-       
-        numHealths--;
-        hud.DisableHealth(numHealths);
 
-        if (numHealths == 0)
-        {           
-            SceneManager.LoadScene(1);
-        }
+        //numHealths--;
+        //hud.DisableHealth(numHealths);
+
+        //if (numHealths == 0)
+        //{           
+        //    SceneManager.LoadScene(1);
+        //}
+
+        playerHealth.GetDamage(damage);
 
     }
 
-    public bool RecoveryHealth()
+    public bool RecoveryHealth(float heal)
     {
-        if (numHealths != numMaxHealths)
-        {
-            hud.ActivateHealth(numHealths);
-            numHealths++;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        //if (numHealths != numMaxHealths)
+        //{
+        //    hud.ActivateHealth(numHealths);
+        //    numHealths++;
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+
+        bool isHealthRecovered = playerHealth.Heal(heal);
+        return isHealthRecovered;
+
     }
 }
