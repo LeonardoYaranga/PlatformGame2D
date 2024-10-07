@@ -9,8 +9,6 @@ public class CharacterController : MonoBehaviour
     public int maxJumps;
     public LayerMask floorLayer;
     public AudioClip jumpSound;
-    public int forceDamageReceived;
-
 
 
     private Rigidbody2D rigidbody2D;
@@ -21,8 +19,8 @@ public class CharacterController : MonoBehaviour
     private Animator animator;
 
     private bool canMove = true;
-    
-    
+
+
 
 
     // Start is called before the first frame update
@@ -32,7 +30,7 @@ public class CharacterController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         jumpsRemaining = maxJumps;
         animator = GetComponent<Animator>();
-      
+
     }
 
     // Update is called once per frame
@@ -44,8 +42,8 @@ public class CharacterController : MonoBehaviour
 
     bool IsOnFloor()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, new Vector2(boxCollider2D.bounds.size.x,boxCollider2D.bounds.size.y),0f,Vector2.down,0.2f, floorLayer);
-        return raycastHit2D.collider != null; 
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, new Vector2(boxCollider2D.bounds.size.x, boxCollider2D.bounds.size.y), 0f, Vector2.down, 0.2f, floorLayer);
+        return raycastHit2D.collider != null;
     }
 
     void ProcessJump()
@@ -55,18 +53,20 @@ public class CharacterController : MonoBehaviour
             jumpsRemaining = maxJumps;
         }
 
-        if( Input.GetKeyDown(KeyCode.Space) && jumpsRemaining>0)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0)
         {
             jumpsRemaining--;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);
-            rigidbody2D.AddForce(Vector2.up*jumpForce,ForceMode2D.Impulse);
+            rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             AudioManager.Instance.ReproduceSound(jumpSound);
         }
     }
 
     void ProcessMovement()
     {
-        if(!canMove) return;
+        animator.SetBool("isReceivingDamage", !canMove);
+
+        if (!canMove) return;
 
         float inputMovement = Input.GetAxis("Horizontal");
 
@@ -82,6 +82,8 @@ public class CharacterController : MonoBehaviour
         rigidbody2D.velocity = new Vector2(inputMovement * velocity, rigidbody2D.velocity.y);
 
         GestionateOrientation(inputMovement);
+
+
     }
 
     void GestionateOrientation(float inputMovement)
@@ -89,32 +91,36 @@ public class CharacterController : MonoBehaviour
 
         if ((isLookingRight && inputMovement < 0) || (!isLookingRight && inputMovement > 0))
         {
-            isLookingRight= !isLookingRight;
+            isLookingRight = !isLookingRight;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
     }
 
-    public void ApplyDamageReceivedFromEnemy()
+    public void ApplyDamageReceivedFromEnemy(float forceDamageReceived, Vector2 enemyMovement)
     {
-        canMove= false;
+        canMove = false;
 
-        Vector2 damageDirection= new Vector2(0,0) ;
-        if (rigidbody2D.velocity.x > 0)
+        Vector2 damageDirection = new Vector2(0, 0);
+
+        if (rigidbody2D.velocity.x > 0 || enemyMovement.x < 0)
         {
-            damageDirection = new Vector2(-1, 1);
+            Debug.Log(rigidbody2D.velocity.x + " " + enemyMovement.x);
+
+            damageDirection = new Vector2(-1, 1).normalized;
         }
 
-        if(rigidbody2D.velocity.x < 0)
+        if (rigidbody2D.velocity.x < 0 || enemyMovement.x > 0)
         {
+            Debug.Log(rigidbody2D.velocity.x + " " + enemyMovement.x);
             damageDirection = new Vector2(1, 1);
         }
 
-        rigidbody2D.AddForce(damageDirection * forceDamageReceived);
+        rigidbody2D.AddForce(damageDirection * forceDamageReceived, ForceMode2D.Impulse);
 
        StartCoroutine(WaitAndActiveMovement());
 
-
+        
     }
 
     IEnumerator WaitAndActiveMovement()

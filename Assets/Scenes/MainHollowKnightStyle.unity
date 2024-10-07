@@ -507,7 +507,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   jumpSound: {fileID: 8300000, guid: 668565d7c8c33814b9cb8c3be4e6355e, type: 3}
-  forceDamageReceived: 1000
 --- !u!50 &429471121
 Rigidbody2D:
   serializedVersion: 4
@@ -1548,7 +1547,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   jumpSound: {fileID: 0}
-  forceDamageReceived: 500
 --- !u!61 &1138519867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2028,6 +2026,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 4
   damage: 25
+  forceDamage: 13
+  player: {fileID: 429471124}
+  detectionRadius: 6
+  speed: 25
 --- !u!95 &1444219126
 Animator:
   serializedVersion: 5
@@ -2061,10 +2063,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 30
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

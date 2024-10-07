@@ -26,14 +26,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("More than one instance of GameManager!");
         }
     }
-
-    // Start is called before the first frame update
     void Start()
     {
         numHealths = numMaxHealths;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -48,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseHealth(float damage)
     {
-
+        /////**Health method with hearts**
         //numHealths--;
         //hud.DisableHealth(numHealths);
 
@@ -56,13 +53,15 @@ public class GameManager : MonoBehaviour
         //{           
         //    SceneManager.LoadScene(1);
         //}
-
+        /////**Health method with hearts**
+        ///
         playerHealth.GetDamage(damage);
 
     }
 
     public bool RecoveryHealth(float heal)
     {
+        /////**Health method with hearts**
         //if (numHealths != numMaxHealths)
         //{
         //    hud.ActivateHealth(numHealths);
@@ -73,7 +72,8 @@ public class GameManager : MonoBehaviour
         //{
         //    return false;
         //}
-
+        /////**Health method with hearts**
+        ///
         bool isHealthRecovered = playerHealth.Heal(heal);
         return isHealthRecovered;
 

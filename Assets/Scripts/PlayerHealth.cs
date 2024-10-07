@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            //If we need to restar the level afterward of lose all HP
             //    SceneManager.LoadScene(1);
 
         }
