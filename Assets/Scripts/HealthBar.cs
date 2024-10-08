@@ -15,13 +15,13 @@ public class HealthBar : MonoBehaviour
     public void ChangeMaxHealth(float maxHP)
     { 
     slider.maxValue = maxHP;
-        Debug.Log(slider.maxValue);
+        Debug.Log("Max HP: " + slider.maxValue);
     }
 
     public void ChangeCurrentHealth(float currentValue)
     { 
     slider.value = currentValue;
-        Debug.Log(slider.value);
+        Debug.Log("Current HP: " + slider.value);
     }
 
     public void InicializeHealthBar()

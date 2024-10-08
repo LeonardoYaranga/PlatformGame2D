@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        Debug.Log("damage: "+ damage);
+        Debug.Log("Damage: "+ damage);
         health -= damage;
         healthBar.ChangeCurrentHealth(health);
         if(health <= 0)

@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
         {
                         
            isHealthRecovered = GameManager.Instance.RecoveryHealth(heal);
-          
+          Debug.Log("Se puede recuperar vida: "+isHealthRecovered);
             if (isHealthRecovered)
             {
                 Destroy(this.gameObject);

@@ -287,7 +287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 92, y: 94}
+  m_AnchoredPosition: {x: 63, y: 111}
   m_SizeDelta: {x: 651.8135, y: 546.3365}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &216045786
@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &429471120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,6 +992,9 @@ GameObject:
   - component: {fileID: 990034994}
   - component: {fileID: 990034996}
   - component: {fileID: 990034995}
+  - component: {fileID: 990034997}
+  - component: {fileID: 990034999}
+  - component: {fileID: 990034998}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -1009,7 +1012,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1379938222}
@@ -1055,7 +1058,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29091fd58626b2e4984699a7c4f3ac2c, type: 3}
+  m_Sprite: {fileID: -256993752, guid: 03864198dca506c41aed4c74183f1adc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1125,19 +1128,74 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11156905, y: -0.29751658}
+  m_Offset: {x: -0.010052562, y: -0.123771906}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 8}
+    oldSize: {x: 1.625, y: 3.3125}
     newSize: {x: 0.64, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5372117, y: 7.107452}
+  m_Size: {x: 1.5989873, y: 3.21556}
   m_EdgeRadius: 0
+--- !u!95 &990034997
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990034992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3223327ed5bf26145bc52d5f98fb3878, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &990034998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990034992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dafc120a80a5d4480cd6cd426fbb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+  jumpForce: 15
+  maxJumps: 2
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  jumpSound: {fileID: 8300000, guid: 668565d7c8c33814b9cb8c3be4e6355e, type: 3}
+--- !u!114 &990034999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990034992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9efba5529ac8a4a9f4e100265f1bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
+  healthBar: {fileID: 216045787}
 --- !u!1 &1060210155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,11 +1466,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1177850965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -673, y: 433}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 48, y: -54}
   m_SizeDelta: {x: 422.2429, y: 104.0591}
-  m_Pivot: {x: 0.50000006, y: 0.50000066}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1138519861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,7 +2085,7 @@ MonoBehaviour:
   attackCooldown: 4
   damage: 25
   forceDamage: 13
-  player: {fileID: 429471124}
+  player: {fileID: 990034993}
   detectionRadius: 6
   speed: 25
 --- !u!95 &1444219126
