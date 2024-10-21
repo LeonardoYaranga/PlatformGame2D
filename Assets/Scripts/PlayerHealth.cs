@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+
         healthBar.ChangeMaxHealth(health);
         healthBar.ChangeCurrentHealth(health);
         //healthBar.InicializeHealthBar();
@@ -20,10 +21,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        Debug.Log("Damage: "+ damage);
+        Debug.Log("Damage: " + damage);
         health -= damage;
         healthBar.ChangeCurrentHealth(health);
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
             //If we need to restar the level afterward of lose all HP
@@ -49,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
             health += heal;
             wasHealed = true;
         }
+
 
         healthBar.ChangeCurrentHealth(health);
         return wasHealed;
